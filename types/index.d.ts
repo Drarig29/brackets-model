@@ -1,9 +1,9 @@
-type TournamentType = "pools" | "single_elimination" | "double_elimination";
-type OrderingType = "natural" | "reverse" | "half_shift" | "reverse_half_shift" | "pair_flip";
+export type TournamentType = "pools" | "single_elimination" | "double_elimination";
+export type OrderingType = "natural" | "reverse" | "half_shift" | "reverse_half_shift" | "pair_flip";
 
-type Teams = string[];
+export type Teams = string[];
 
-type MatchScores = [number, number];
-type RoundScores = MatchScores[];
-type BracketScores = RoundScores[];
-type TournamentResults = BracketScores[];
+export type MatchScores = [number, number];
+export type RoundScores = MatchScores[];
+export type BracketScores = RoundScores[];
+export type TournamentResults = BracketScores[];

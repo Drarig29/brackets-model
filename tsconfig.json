@@ -5,9 +5,5 @@
         "strict": true,
         "declaration": true,
         "outDir": "./dist"
-    },
-    "include": [
-        "types/**/*.d.ts",
-        "src/**/*.ts",
-    ]
+    }
 }
