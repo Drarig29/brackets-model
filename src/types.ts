@@ -8,10 +8,13 @@ export type RoundScores = MatchScores[];
 export type BracketScores = RoundScores[];
 export type TournamentResults = BracketScores[];
 
-export interface TournamentData {
+export declare interface Tournament {
     name: string,
     type: TournamentType,
     minorOrdering: OrderingType[],
     teams: Teams,
-    results?: TournamentResults,
+}
+
+export declare interface TournamentData extends Tournament {
+    results: TournamentResults,
 }
