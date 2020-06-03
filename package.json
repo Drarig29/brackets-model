@@ -1,0 +1,27 @@
+{
+    "name": "brackets-model",
+    "version": "0.1.0",
+    "description": "The model and helpers to manage and display tournaments (pools, single elimination, double elimination)",
+    "main": "src/helpers.ts",
+    "files": [
+        "dist/"
+    ],
+    "scripts": {
+        "prepare": "tsc",
+        "build": "tsc",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Drarig29/brackets.git"
+    },
+    "author": "Corentin Girard",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/Drarig29/brackets/issues"
+    },
+    "homepage": "https://github.com/Drarig29/brackets#readme",
+    "devDependencies": {
+        "typescript": "^3.9.3"
+    }
+}
