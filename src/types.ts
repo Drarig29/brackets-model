@@ -11,7 +11,7 @@ export type TournamentResults = BracketScores[];
 export declare interface Tournament {
     name: string,
     type: TournamentType,
-    minorOrdering: OrderingType[],
+    minorOrdering?: OrderingType[],
     teams: Teams,
 }
 
