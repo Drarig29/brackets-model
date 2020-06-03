@@ -2,9 +2,12 @@
     "name": "brackets-model",
     "version": "0.1.0",
     "description": "The model and helpers to manage and display tournaments (pools, single elimination, double elimination)",
-    "main": "src/helpers.ts",
+    "main": "dist/helpers.js",
+    "types": "src/**/*.d.ts",
     "files": [
-        "dist/"
+        "dist/",
+        "README.md",
+        "LICENSE"
     ],
     "scripts": {
         "prepare": "tsc",
