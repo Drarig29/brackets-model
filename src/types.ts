@@ -7,3 +7,11 @@ export type MatchScores = [number, number];
 export type RoundScores = MatchScores[];
 export type BracketScores = RoundScores[];
 export type TournamentResults = BracketScores[];
+
+export interface TournamentData {
+    name: string,
+    type: TournamentType,
+    minorOrdering: OrderingType[],
+    teams: Teams,
+    results?: TournamentResults,
+}
