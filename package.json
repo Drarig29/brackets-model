@@ -3,10 +3,9 @@
     "version": "0.1.4",
     "description": "The model and helpers to manage and display tournaments (pools, single elimination, double elimination)",
     "main": "./dist/index.js",
-    "types": "./types/index.d.ts",
+    "types": "./dist/index.d.ts",
     "files": [
-        "dist",
-        "types"
+        "dist"
     ],
     "scripts": {
         "prepare": "tsc",
