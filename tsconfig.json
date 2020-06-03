@@ -4,8 +4,10 @@
         "module": "commonjs",
         "strict": true,
         "declaration": true,
-        "declarationMap": true,
-        "sourceMap": true,
-        "outDir": "dist/"
-    }
+        "outDir": "./dist"
+    },
+    "include": [
+        "types/**/*.d.ts",
+        "src/**/*.ts",
+    ]
 }

@@ -3,11 +3,10 @@
     "version": "0.1.1",
     "description": "The model and helpers to manage and display tournaments (pools, single elimination, double elimination)",
     "main": "dist/helpers.js",
-    "types": "src/**/*.d.ts",
+    "types": "types/index.d.ts",
     "files": [
         "dist/",
-        "README.md",
-        "LICENSE"
+        "types/"
     ],
     "scripts": {
         "prepare": "tsc",
