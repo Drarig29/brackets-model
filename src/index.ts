@@ -1,72 +1,117 @@
-import * as types from "./types";
+/**
+ * The only possible stage type for the library.
+ */
+export type StageType = 'round_robin' | 'single_elimination' | 'double_elimination';
 
 /**
- * Makes pairs with each element and its next one.
- * @example [1, 2, 3, 4] --> [[1, 2], [3, 4]]
+ * Used to reorder seeds.
  */
-export function makePairs(array: any[]): any[][];
+export type SeedOrdering =
+    'natural' | 'reverse' | 'half_shift' | 'reverse_half_shift' | 'pair_flip' |
+    'groups.effort_balanced' | 'groups.snake' | 'groups.bracket_optimized';
 
 /**
- * Makes pairs with one element from `left` and the other from `right`.
- * @example [1, 2] + [3, 4] --> [[1, 3], [2, 4]]
+ * Type of an object implementing every ordering method.
  */
-export function makePairs(left: any[], right: any[]): any[][];
+export type OrderingMap = { [key in SeedOrdering]: Function };
 
-export function makePairs(left: any[], right?: any[]): any[][] {
-    if (!right) {
-        ensureEvenSized(left);
-        return left.map((current, i) => (i % 2 === 0) ? [current, left[i + 1]] : [])
-            .filter(v => v.length > 0);
+/**
+ * An array of participants (name or `null` to introduce a BYE), given to the library to create a stage.
+ */
+export type InputParticipants = (string | null)[];
+
+/**
+ * Used by the library to handle placements. Is `null` if is a BYE. Has a `null` name if it's yet to be determined.
+ */
+export type Participant = { name: string | null } | null;
+
+/**
+ * The library only handles duels. It's one participant versus another participant.
+ */
+export type Duel = Participant[];
+
+/**
+ * A list of duels.
+ */
+export type Duels = Duel[];
+
+/**
+ * Used to created a stage.
+ */
+export declare interface Stage {
+    name: string,
+    type: StageType,
+    participants: InputParticipants,
+    settings: any,
+}
+
+/**
+ * The possible result of a duel for a participant.
+ */
+export type Result = 'win' | 'draw' | 'loss';
+
+/**
+ * The status for a duel.
+ */
+export type Status = 'pending' | 'running' | 'completed';
+
+/**
+ * The side of an opponent.
+ */
+export type Side = 'opponent1' | 'opponent2';
+
+/**
+ * The data format of the interface for the storage.
+ */
+export declare namespace Storage {
+
+    interface ParticipantResult {
+        id: number,
+        forfeit: boolean,
+        score: number,
+        result?: Result,
     }
 
-    ensureEquallySized(left, right);
-    return left.map((current, i) => [current, right[i]]);
-}
+    interface Stage {
+        id: number,
+        name: string,
+        type: string,
+    }
 
-export function ensureEvenSized(array: any[]) {
-    if (array.length % 2 === 1) {
-        throw Error('Array size must be even.');
+    interface Group {
+        id: number,
+        stage_id: number,
+        name: string,
+    }
+
+    interface Round {
+        id: number,
+        stage_id: number,
+        group_id: number,
+        number: number,
+    }
+
+    interface Match {
+        id: number,
+        status: Status,
+        stage_id: number,
+        group_id: number,
+        round_id: number,
+        number: number,
+        scheduled_datetime: string,
+        start_datetime: string,
+        end_datetime: string,
+        opponent1: ParticipantResult | null,
+        opponent2: ParticipantResult | null,
+    }
+
+    interface MatchGame {
+        id: number,
+        status: number,
+        number: number,
+        start_datetime: string,
+        end_datetime: string,
+        opponent1: ParticipantResult | null,
+        opponent2: ParticipantResult | null,
     }
 }
-
-export function ensureEquallySized(left: any[], right: any[]) {
-    if (left.length !== right.length) {
-        throw Error('Arrays size must be equal.');
-    }
-}
-
-export function ensurePowerOfTwoSized(array: any[]) {
-    if (!Number.isInteger(Math.log2(array.length))) {
-        throw Error('Array size must be a power of 2.');
-    }
-}
-
-export function ensureNotTied(scores: types.MatchScores) {
-    if (scores[0] === scores[1]) {
-        throw Error(`${scores[0]} and ${scores[1]} are tied. It cannot be.`);
-    }
-}
-
-// https://web.archive.org/web/20200601102344/https://tl.net/forum/sc2-tournaments/202139-superior-double-elimination-losers-bracket-seeding
-
-export const ordering = {
-    natural: (array: any[]) => [...array],
-    reverse: (array: any[]) => array.reverse(),
-    half_shift: (array: any[]) => [...array.slice(array.length / 2), ...array.slice(0, array.length / 2)],
-    reverse_half_shift: (array: any[]) => [...array.slice(array.length / 2).reverse(), ...array.slice(0, array.length / 2).reverse()],
-    pair_flip: (array: any[]) => {
-        const result = [];
-        for (let i = 0; i < array.length; i += 2) result.push(array[i + 1], array[i]);
-        return result;
-    },
-}
-
-export const defaultMinorOrdering: { [key: number]: types.OrderingType[] } = {
-    8: ['natural', 'reverse', 'natural'],
-    16: ['natural', 'reverse_half_shift', 'reverse', 'natural'],
-    32: ['natural', 'reverse', 'half_shift', 'natural', 'natural'],
-    64: ['natural', 'reverse', 'half_shift', 'reverse', 'natural', 'natural'],
-    128: ['natural', 'reverse', 'half_shift', 'pair_flip', 'pair_flip', 'pair_flip', 'natural'],
-}
-
-export { types };
