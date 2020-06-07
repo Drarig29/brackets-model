@@ -107,6 +107,7 @@ export declare namespace Storage {
 
     interface MatchGame {
         id: number,
+        parent_id: number,
         status: number,
         number: number,
         start_datetime: string,
