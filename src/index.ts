@@ -36,6 +36,11 @@ export type Duels = Duel[];
 export type StageType = 'round_robin' | 'single_elimination' | 'double_elimination';
 
 /**
+ * The possible types for a double elimination stage's grand final.
+ */
+export type GrandFinalType = 'simple' | 'double';
+
+/**
  * The possible settings for a stage.
  */
 export interface StageSettings {
@@ -56,7 +61,7 @@ export interface StageSettings {
      * - If `double`, if the WB winner wins, he's the winner of the stage. But if he loses, the final is reset and there is a very last match.
      * It might be fairer since it gives the WB winner the right to lose once during the stage...
      */
-    grandFinal?: 'simple' | 'double',
+    grandFinal?: GrandFinalType,
 }
 
 /**
