@@ -1,9 +1,4 @@
 /**
- * The only possible stage type for the library.
- */
-export type StageType = 'round_robin' | 'single_elimination' | 'double_elimination';
-
-/**
  * Used to reorder seeds.
  */
 export type SeedOrdering =
@@ -36,13 +31,42 @@ export type Duel = Participant[];
 export type Duels = Duel[];
 
 /**
+ * The only possible stage type for the library.
+ */
+export type StageType = 'round_robin' | 'single_elimination' | 'double_elimination';
+
+/**
+ * The possible settings for a stage.
+ */
+export interface StageSettings {
+    /** 
+     * Number of groups in a round-robin stage.
+     */
+    groupCount?: number,
+
+    /** 
+     * Optional final between semi-final losers.
+     */
+    consolationFinal?: boolean,
+
+    /**
+     * Optional grand final between WB and LB winners.
+     * 
+     * - If `simple`, the final is a single match. The winner is the winner of the stage.
+     * - If `double`, if the WB winner wins, he's the winner of the stage. But if he loses, the final is reset and there is a very last match.
+     * It might be fairer since it gives the WB winner the right to lose once during the stage...
+     */
+    grandFinal?: 'simple' | 'double',
+}
+
+/**
  * Used to created a stage.
  */
 export declare interface Stage {
     name: string,
     type: StageType,
     participants: InputParticipants,
-    settings: any,
+    settings?: StageSettings,
 }
 
 /**
