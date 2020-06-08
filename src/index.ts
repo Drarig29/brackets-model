@@ -67,7 +67,7 @@ export interface StageSettings {
 /**
  * Used to created a stage.
  */
-export declare interface Stage {
+export declare interface InputStage {
     name: string,
     type: StageType,
     participants: InputParticipants,
@@ -89,59 +89,53 @@ export type Status = 'pending' | 'running' | 'completed';
  */
 export type Side = 'opponent1' | 'opponent2';
 
-/**
- * The data format of the interface for the storage.
- */
-export declare namespace Storage {
+export interface ParticipantResult {
+    id: number,
+    forfeit: boolean,
+    score: number,
+    result?: Result,
+}
 
-    interface ParticipantResult {
-        id: number,
-        forfeit: boolean,
-        score: number,
-        result?: Result,
-    }
+export interface Stage {
+    id: number,
+    name: string,
+    type: string,
+}
 
-    interface Stage {
-        id: number,
-        name: string,
-        type: string,
-    }
+export interface Group {
+    id: number,
+    stage_id: number,
+    name: string,
+}
 
-    interface Group {
-        id: number,
-        stage_id: number,
-        name: string,
-    }
+export interface Round {
+    id: number,
+    stage_id: number,
+    group_id: number,
+    number: number,
+}
 
-    interface Round {
-        id: number,
-        stage_id: number,
-        group_id: number,
-        number: number,
-    }
+export interface Match {
+    id: number,
+    status: Status,
+    stage_id: number,
+    group_id: number,
+    round_id: number,
+    number: number,
+    scheduled_datetime: string,
+    start_datetime: string,
+    end_datetime: string,
+    opponent1: ParticipantResult | null,
+    opponent2: ParticipantResult | null,
+}
 
-    interface Match {
-        id: number,
-        status: Status,
-        stage_id: number,
-        group_id: number,
-        round_id: number,
-        number: number,
-        scheduled_datetime: string,
-        start_datetime: string,
-        end_datetime: string,
-        opponent1: ParticipantResult | null,
-        opponent2: ParticipantResult | null,
-    }
-
-    interface MatchGame {
-        id: number,
-        parent_id: number,
-        status: number,
-        number: number,
-        start_datetime: string,
-        end_datetime: string,
-        opponent1: ParticipantResult | null,
-        opponent2: ParticipantResult | null,
-    }
+export interface MatchGame {
+    id: number,
+    parent_id: number,
+    status: number,
+    number: number,
+    start_datetime: string,
+    end_datetime: string,
+    opponent1: ParticipantResult | null,
+    opponent2: ParticipantResult | null,
 }
