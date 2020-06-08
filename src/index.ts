@@ -18,12 +18,12 @@ export type InputParticipants = (string | null)[];
 /**
  * Used by the library to handle placements. Is `null` if is a BYE. Has a `null` name if it's yet to be determined.
  */
-export type Participant = { name: string | null } | null;
+export type ParticipantSlot = { id: number | null } | null;
 
 /**
  * The library only handles duels. It's one participant versus another participant.
  */
-export type Duel = Participant[];
+export type Duel = ParticipantSlot[];
 
 /**
  * A list of duels.
@@ -90,10 +90,15 @@ export type Status = 'pending' | 'running' | 'completed';
 export type Side = 'opponent1' | 'opponent2';
 
 export interface ParticipantResult {
-    id: number,
+    id: number | null,
     forfeit: boolean,
     score: number,
     result?: Result,
+}
+
+export interface Participant {
+    id: number,
+    name: string,
 }
 
 export interface Stage {
