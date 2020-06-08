@@ -91,8 +91,8 @@ export type Side = 'opponent1' | 'opponent2';
 
 export interface ParticipantResult {
     id: number | null,
-    forfeit: boolean,
-    score: number,
+    forfeit?: boolean,
+    score?: number,
     result?: Result,
 }
 
