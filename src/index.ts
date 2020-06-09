@@ -62,6 +62,20 @@ export interface StageSettings {
      * It might be fairer since it gives the WB winner the right to lose once during the stage...
      */
     grandFinal?: GrandFinalType,
+
+    /**
+     * A list of ordering methods to apply to the seeding.
+     * 
+     * - For a round-robin stage: 1 item required (**with** `"groups."` prefix).
+     *   - Used to distribute in groups.
+     * - For a simple elimination stage, 1 item required (**without** `"groups."` prefix).
+     *   - Used to distribute in round 1.
+     * - For a double elimination stage, 1 item required, 3+ items supported (**without** `"groups."` prefix).
+     *   - Item 1 (required) - Used to distribute in WB round 1.
+     *   - Item 2 - Used to distribute WB losers in LB round 1.
+     *   - Items 3+ - Used to distribute WB losers in LB minor rounds (1 per round).
+     */
+    seedOrdering?: SeedOrdering[],
 }
 
 /**
