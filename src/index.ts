@@ -2,7 +2,7 @@
  * Used to reorder seeds.
  */
 export type SeedOrdering =
-    'natural' | 'reverse' | 'half_shift' | 'reverse_half_shift' | 'pair_flip' |
+    'natural' | 'reverse' | 'half_shift' | 'reverse_half_shift' | 'pair_flip' | 'inner_outer' |
     'groups.effort_balanced' | 'groups.snake' | 'groups.bracket_optimized';
 
 /**
