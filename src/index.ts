@@ -84,7 +84,11 @@ export interface StageSettings {
 export declare interface InputStage {
     name: string,
     type: StageType,
+
+    /** Contains names or `null` for BYEs. */
     participants: InputParticipants,
+
+    /** Contains optional settings special to each stage type. */
     settings?: StageSettings,
 }
 
@@ -104,9 +108,16 @@ export type Status = 'pending' | 'running' | 'completed';
 export type Side = 'opponent1' | 'opponent2';
 
 export interface ParticipantResult {
+    /** If `null`, the participant is to be determined. */
     id: number | null,
+
+    /** If this participant is forfeit, the other automatically wins. */
     forfeit?: boolean,
+
+    /** The current score of the participant. */
     score?: number,
+
+    /** Tells what is the result of a duel for this participant. */
     result?: Result,
 }
 
@@ -118,7 +129,7 @@ export interface Participant {
 export interface Stage {
     id: number,
     name: string,
-    type: string,
+    type: StageType,
 }
 
 export interface Group {
@@ -127,23 +138,34 @@ export interface Group {
     name: string,
 }
 
+// The next levels don't have a `name` property. They can be named with their `number` and their context (parent levels).
+
 export interface Round {
     id: number,
     stage_id: number,
     group_id: number,
+
+    /** The number of the round in its group. */
     number: number,
 }
 
 export interface Match {
     id: number,
-    status: Status,
     stage_id: number,
     group_id: number,
     round_id: number,
+    status: Status,
+
+    /** The number of the match in its round. */
     number: number,
-    scheduled_datetime: string,
-    start_datetime: string,
-    end_datetime: string,
+
+    /** The count of match games this match has. Can be `0` if it's a simple match, or a positive number for "Best Of" matches. */
+    childCount: number,
+
+    scheduled_datetime: string | null,
+    start_datetime: string | null,
+    end_datetime: string | null,
+
     opponent1: ParticipantResult | null,
     opponent2: ParticipantResult | null,
 }
@@ -151,10 +173,15 @@ export interface Match {
 export interface MatchGame {
     id: number,
     parent_id: number,
-    status: number,
+    status: Status,
+
+    /** The number of the match game in its parent match. */
     number: number,
-    start_datetime: string,
-    end_datetime: string,
+
+    scheduled_datetime: string | null,
+    start_datetime: string | null,
+    end_datetime: string | null,
+
     opponent1: ParticipantResult | null,
     opponent2: ParticipantResult | null,
 }
