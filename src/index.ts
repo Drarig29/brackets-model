@@ -76,6 +76,11 @@ export interface StageSettings {
      *   - Items 3+ - Used to distribute WB losers in LB minor rounds (1 per round).
      */
     seedOrdering?: SeedOrdering[],
+
+    /**
+     * All matches of the stage will have this child count. This can later be overridden for certain groups, rounds or matches.
+     */
+    matchesChildCount?: number,
 }
 
 /**
