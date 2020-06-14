@@ -2,6 +2,8 @@
 
 The types needed by brackets-manager.js and brackets-viewer.js
 
+If you think any class or property should not be here, it's likely that you think about only one of the two libraries... 😉
+
 ## Disclaimer
 
 This package has no functionality. It's **just type definitions**.

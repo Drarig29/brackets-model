@@ -98,14 +98,14 @@ export declare interface InputStage {
 }
 
 /**
- * The possible result of a duel for a participant.
+ * The possible results of a duel for a participant.
  */
 export type Result = 'win' | 'draw' | 'loss';
 
 /**
- * The status for a duel.
+ * The possible status for whatever that starts and ends in time.
  */
-export type Status = 'pending' | 'running' | 'completed';
+export type Status = 'locked' | 'pending' | 'running' | 'completed';
 
 /**
  * The side of an opponent.
@@ -126,8 +126,22 @@ export interface ParticipantResult {
     result?: Result,
 }
 
+export interface Tournament {
+    id: number,
+    name: string,
+    status: Status,
+    scheduled_start_date: string,
+    scheduled_end_date: string,
+
+    /**
+     * Number of participants in the tournament.
+     */
+    size: number,
+}
+
 export interface Participant {
     id: number,
+    tournament_id: number
     name: string,
 }
 
@@ -135,12 +149,18 @@ export interface Stage {
     id: number,
     name: string,
     type: StageType,
+
+    /** The number of the stage in its tournament. */
+    number: number,
 }
 
 export interface Group {
     id: number,
     stage_id: number,
     name: string,
+
+    /** The number of the group in its stage. */
+    number: number,
 }
 
 // The next levels don't have a `name` property. They can be named with their `number` and their context (parent levels).
