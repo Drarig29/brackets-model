@@ -192,7 +192,7 @@ export interface Match {
     number: number,
 
     /** The count of match games this match has. Can be `0` if it's a simple match, or a positive number for "Best Of" matches. */
-    childCount: number,
+    child_count: number,
 
     scheduled_datetime: string | null,
     start_datetime: string | null,
