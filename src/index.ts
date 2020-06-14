@@ -116,6 +116,9 @@ export interface ParticipantResult {
     /** If `null`, the participant is to be determined. */
     id: number | null,
 
+    /** Indicates where the participant comes from. */
+    position: number | null,
+
     /** If this participant is forfeit, the other automatically wins. */
     forfeit?: boolean,
 
