@@ -91,7 +91,10 @@ export declare interface InputStage {
     type: StageType,
 
     /** Contains names or `null` for BYEs. */
-    participants: InputParticipants,
+    participants?: InputParticipants,
+
+    /** The number of participants if no participant given. All matches will then be "To be determined". */
+    size?: number,
 
     /** Contains optional settings special to each stage type. */
     settings?: StageSettings,
@@ -117,7 +120,7 @@ export interface ParticipantResult {
     id: number | null,
 
     /** Indicates where the participant comes from. */
-    position: number | null,
+    position?: number,
 
     /** If this participant is forfeit, the other automatically wins. */
     forfeit?: boolean,
@@ -150,6 +153,7 @@ export interface Participant {
 
 export interface Stage {
     id: number,
+    tournament_id: number,
     name: string,
     type: StageType,
 
