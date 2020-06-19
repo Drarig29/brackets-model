@@ -108,7 +108,7 @@ export type Result = 'win' | 'draw' | 'loss';
 /**
  * The possible status for whatever that starts and ends in time.
  */
-export type Status = 'locked' | 'pending' | 'running' | 'completed';
+export type Status = 'pending' | 'running' | 'completed';
 
 /**
  * The side of an opponent.
@@ -186,7 +186,7 @@ export interface Match {
     stage_id: number,
     group_id: number,
     round_id: number,
-    status: Status,
+    locked: boolean,
 
     /** The number of the match in its round. */
     number: number,
