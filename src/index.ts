@@ -18,7 +18,7 @@ export type InputParticipants = (string | null)[];
 /**
  * Used by the library to handle placements. Is `null` if is a BYE. Has a `null` name if it's yet to be determined.
  */
-export type ParticipantSlot = { id: number | null } | null;
+export type ParticipantSlot = { id: number | null, position?: number } | null;
 
 /**
  * The library only handles duels. It's one participant versus another participant.
