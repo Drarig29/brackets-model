@@ -8,7 +8,7 @@ export type SeedOrdering =
 /**
  * Type of an object implementing every ordering method.
  */
-export type OrderingMap = { [key in SeedOrdering]: Function };
+export type OrderingMap = { [key in SeedOrdering]: <T>(array: T[], ...args: any) => T[] };
 
 /**
  * An array of participants (name or `null` to introduce a BYE), given to the library to create a stage.
