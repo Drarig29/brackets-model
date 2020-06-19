@@ -181,7 +181,13 @@ export interface Round {
     number: number,
 }
 
-export interface Match {
+export interface MatchResults {
+    status: Status,
+    opponent1: ParticipantResult | null,
+    opponent2: ParticipantResult | null,
+}
+
+export interface Match extends MatchResults {
     id: number,
     stage_id: number,
     group_id: number,
@@ -197,12 +203,9 @@ export interface Match {
     scheduled_datetime: string | null,
     start_datetime: string | null,
     end_datetime: string | null,
-
-    opponent1: ParticipantResult | null,
-    opponent2: ParticipantResult | null,
 }
 
-export interface MatchGame {
+export interface MatchGame extends MatchResults {
     id: number,
     parent_id: number,
     status: Status,
