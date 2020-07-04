@@ -115,6 +115,9 @@ export type Status = 'pending' | 'running' | 'completed';
  */
 export type Side = 'opponent1' | 'opponent2';
 
+/**
+ * The results of a participant in a match.
+ */
 export interface ParticipantResult {
     /** If `null`, the participant is to be determined. */
     id: number | null,
@@ -132,25 +135,18 @@ export interface ParticipantResult {
     result?: Result,
 }
 
-export interface Tournament {
-    id: number,
-    name: string,
-    status: Status,
-    scheduled_start_date: string,
-    scheduled_end_date: string,
-
-    /**
-     * Number of participants in the tournament.
-     */
-    size: number,
-}
-
+/**
+ * A participant of a stage.
+ */
 export interface Participant {
     id: number,
     tournament_id: number
     name: string,
 }
 
+/**
+ * A stage, which can be a round-robin stage or a single/double elimination stage.
+ */
 export interface Stage {
     id: number,
     tournament_id: number,
@@ -161,6 +157,9 @@ export interface Stage {
     number: number,
 }
 
+/**
+ * A group of a stage.
+ */
 export interface Group {
     id: number,
     stage_id: number,
@@ -172,6 +171,9 @@ export interface Group {
 
 // The next levels don't have a `name` property. They can be named with their `number` and their context (parent levels).
 
+/**
+ * A round of a group.
+ */
 export interface Round {
     id: number,
     stage_id: number,
@@ -181,12 +183,18 @@ export interface Round {
     number: number,
 }
 
+/**
+ * Only contains information about match status and results.
+ */
 export interface MatchResults {
     status: Status,
     opponent1: ParticipantResult | null,
     opponent2: ParticipantResult | null,
 }
 
+/**
+ * A match of a round.
+ */
 export interface Match extends MatchResults {
     id: number,
     stage_id: number,
@@ -205,6 +213,9 @@ export interface Match extends MatchResults {
     end_datetime: string | null,
 }
 
+/**
+ * A game of a match.
+ */
 export interface MatchGame extends MatchResults {
     id: number,
     parent_id: number,
@@ -219,4 +230,27 @@ export interface MatchGame extends MatchResults {
 
     opponent1: ParticipantResult | null,
     opponent2: ParticipantResult | null,
+}
+
+/**
+ * The data to display with `brackets-viewer.js`
+ */
+export interface ViewerData {
+    /** The stage to display. */
+    stage: Stage,
+    
+    /** The groups of the stage to display. */
+    groups: Group[],
+
+    /** The rounds of the stage to display. */
+    rounds: Round[],
+
+    /** The matches of the stage to display. */
+    matches: Match[],
+
+    /** The games of the matches to display. */
+    matchGames: MatchGame[],
+
+    /** The participants who play in the stage to display. */
+    participants: Participant[],
 }
