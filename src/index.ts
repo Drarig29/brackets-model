@@ -1,5 +1,5 @@
 /**
- * Used to reorder seeds.
+ * Used to order seeds.
  */
 export type SeedOrdering =
     'natural' | 'reverse' | 'half_shift' | 'reverse_half_shift' | 'pair_flip' | 'inner_outer' |
@@ -13,7 +13,7 @@ export type OrderingMap = { [key in SeedOrdering]: <T>(array: T[], ...args: any)
 /**
  * An array of participants (name or `null` to introduce a BYE), given to the library to create a stage.
  */
-export type InputParticipants = (string | null)[];
+export type Seeding = (string | null)[];
 
 /**
  * Used by the library to handle placements. Is `null` if is a BYE. Has a `null` name if it's yet to be determined.
@@ -87,11 +87,12 @@ export interface StageSettings {
  * Used to created a stage.
  */
 export declare interface InputStage {
+    tournamentId: number,
     name: string,
     type: StageType,
 
     /** Contains names or `null` for BYEs. */
-    participants?: InputParticipants,
+    seeding?: Seeding,
 
     /** The number of participants if no participant given. All matches will then be "To be determined". */
     size?: number,
@@ -152,6 +153,7 @@ export interface Stage {
     tournament_id: number,
     name: string,
     type: StageType,
+    settings?: StageSettings,
 
     /** The number of the stage in its tournament. */
     number: number,
