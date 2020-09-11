@@ -16,6 +16,11 @@ export type OrderingMap = { [key in SeedOrdering]: <T>(array: T[], ...args: any)
 export type Seeding = (string | null)[];
 
 /**
+ * An array of participants (id or `null` to introduce a BYE), given to the library to edit a stage.
+ */
+export type SeedingIds = (number | null)[];
+
+/**
  * Used by the library to handle placements. Is `null` if is a BYE. Has a `null` name if it's yet to be determined.
  */
 export type ParticipantSlot = { id: number | null, position?: number } | null;
@@ -91,8 +96,8 @@ export declare interface InputStage {
     name: string,
     type: StageType,
 
-    /** Contains names or `null` for BYEs. */
-    seeding?: Seeding,
+    /** Contains participants (name or id) or `null` for BYEs. */
+    seeding?: Seeding | SeedingIds,
 
     /** The number of participants if no participant given. All matches will then be "To be determined". */
     size?: number,
