@@ -145,7 +145,6 @@ export interface Stage {
 export interface Group {
     id: number,
     stage_id: number,
-    name: string,
 
     /** The number of the group in its stage. */
     number: number,
@@ -189,10 +188,6 @@ export interface Match extends MatchResults {
 
     /** The count of match games this match has. Can be `0` if it's a simple match, or a positive number for "Best Of" matches. */
     child_count: number,
-
-    scheduled_datetime: string | null,
-    start_datetime: string | null,
-    end_datetime: string | null,
 }
 
 /**
@@ -205,10 +200,6 @@ export interface MatchGame extends MatchResults {
 
     /** The number of the match game in its parent match. */
     number: number,
-
-    scheduled_datetime: string | null,
-    start_datetime: string | null,
-    end_datetime: string | null,
 
     opponent1: ParticipantResult | null,
     opponent2: ParticipantResult | null,
