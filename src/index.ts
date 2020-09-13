@@ -6,11 +6,6 @@ export type SeedOrdering =
     'groups.effort_balanced' | 'groups.snake' | 'groups.bracket_optimized';
 
 /**
- * Type of an object implementing every ordering method.
- */
-export type OrderingMap = { [key in SeedOrdering]: <T>(array: T[], ...args: any) => T[] };
-
-/**
  * An array of participants (name or `null` to introduce a BYE), given to the library to create a stage.
  */
 export type Seeding = (string | null)[];
@@ -21,24 +16,22 @@ export type Seeding = (string | null)[];
 export type SeedingIds = (number | null)[];
 
 /**
- * Used by the library to handle placements. Is `null` if is a BYE. Has a `null` name if it's yet to be determined.
+ * Used to created a stage.
  */
-export type ParticipantSlot = { id: number | null, position?: number } | null;
+export declare interface InputStage {
+    tournamentId: number,
+    name: string,
+    type: StageType,
 
-/**
- * The library only handles duels. It's one participant versus another participant.
- */
-export type Duel = ParticipantSlot[];
+    /** Contains participants (name or id) or `null` for BYEs. */
+    seeding?: Seeding | SeedingIds,
 
-/**
- * A list of duels.
- */
-export type Duels = Duel[];
+    /** The number of participants if no participant given. All matches will then be "To be determined". */
+    size?: number,
 
-/**
- * The only possible stage type for the library.
- */
-export type StageType = 'round_robin' | 'single_elimination' | 'double_elimination';
+    /** Contains optional settings special to each stage type. */
+    settings?: StageSettings,
+}
 
 /**
  * The possible types for a double elimination stage's grand final.
@@ -89,22 +82,9 @@ export interface StageSettings {
 }
 
 /**
- * Used to created a stage.
+ * The only supported type of stage.
  */
-export declare interface InputStage {
-    tournamentId: number,
-    name: string,
-    type: StageType,
-
-    /** Contains participants (name or id) or `null` for BYEs. */
-    seeding?: Seeding | SeedingIds,
-
-    /** The number of participants if no participant given. All matches will then be "To be determined". */
-    size?: number,
-
-    /** Contains optional settings special to each stage type. */
-    settings?: StageSettings,
-}
+export type StageType = 'round_robin' | 'single_elimination' | 'double_elimination';
 
 /**
  * The possible results of a duel for a participant.
@@ -115,11 +95,6 @@ export type Result = 'win' | 'draw' | 'loss';
  * The possible status for whatever that starts and ends in time.
  */
 export type Status = 'pending' | 'running' | 'completed';
-
-/**
- * The side of an opponent.
- */
-export type Side = 'opponent1' | 'opponent2';
 
 /**
  * The results of a participant in a match.
@@ -237,27 +212,4 @@ export interface MatchGame extends MatchResults {
 
     opponent1: ParticipantResult | null,
     opponent2: ParticipantResult | null,
-}
-
-/**
- * The data to display with `brackets-viewer.js`
- */
-export interface ViewerData {
-    /** The stage to display. */
-    stage: Stage,
-    
-    /** The groups of the stage to display. */
-    groups: Group[],
-
-    /** The rounds of the stage to display. */
-    rounds: Round[],
-
-    /** The matches of the stage to display. */
-    matches: Match[],
-
-    /** The games of the matches to display. */
-    matchGames: MatchGame[],
-
-    /** The participants who play in the stage to display. */
-    participants: Participant[],
 }
