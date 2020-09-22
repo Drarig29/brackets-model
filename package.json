@@ -16,8 +16,8 @@
         "dist"
     ],
     "scripts": {
-        "prepare": "tsc",
         "build": "tsc",
+        "prepare": "npm run build",
         "prepublishOnly": "npm run build"
     },
     "repository": {
