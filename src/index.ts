@@ -196,11 +196,7 @@ export interface Match extends MatchResults {
 export interface MatchGame extends MatchResults {
     id: number,
     parent_id: number,
-    status: Status,
 
     /** The number of the match game in its parent match. */
     number: number,
-
-    opponent1: ParticipantResult | null,
-    opponent2: ParticipantResult | null,
 }
