@@ -92,9 +92,27 @@ export type StageType = 'round_robin' | 'single_elimination' | 'double_eliminati
 export type Result = 'win' | 'draw' | 'loss';
 
 /**
- * The possible status for whatever that starts and ends in time.
+ * The possible status for a match.
  */
-export type Status = 'pending' | 'running' | 'completed';
+export enum Status {
+    /** The two matches leading to this one are not completed yet. No update possible. */
+    Locked,
+
+    /** One participant is ready and waiting for the other one. No update possible. */
+    Waiting,
+
+    /** Both participants are ready to start. Update possible. */
+    Ready,
+
+    /** The match is running. Update possible. */
+    Running,
+
+    /** The match is completed. Update possible. */
+    Completed,
+
+    /** At least one participant completed his following match. No update possible. */
+    Archived,
+}
 
 /**
  * The results of a participant in a match.
@@ -181,7 +199,6 @@ export interface Match extends MatchResults {
     stage_id: number,
     group_id: number,
     round_id: number,
-    locked: boolean,
 
     /** The number of the match in its round. */
     number: number,
