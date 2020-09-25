@@ -95,22 +95,22 @@ export type Result = 'win' | 'draw' | 'loss';
  * The possible status for a match.
  */
 export enum Status {
-    /** The two matches leading to this one are not completed yet. No update possible. */
+    /** The two matches leading to this one are not completed yet. */
     Locked,
 
-    /** One participant is ready and waiting for the other one. No update possible. */
+    /** One participant is ready and waiting for the other one. */
     Waiting,
 
-    /** Both participants are ready to start. Update possible. */
+    /** Both participants are ready to start. */
     Ready,
 
-    /** The match is running. Update possible. */
+    /** The match is running. */
     Running,
 
-    /** The match is completed. Update possible. */
+    /** The match is completed. */
     Completed,
 
-    /** At least one participant completed his following match. No update possible. */
+    /** At least one participant completed his following match. */
     Archived,
 }
 
