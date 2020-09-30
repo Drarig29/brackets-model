@@ -26,9 +26,6 @@ export declare interface InputStage {
     /** Contains participants (name or id) or `null` for BYEs. */
     seeding?: Seeding | SeedingIds,
 
-    /** The number of participants if no participant given. All matches will then be "To be determined". */
-    size?: number,
-
     /** Contains optional settings special to each stage type. */
     settings?: StageSettings,
 }
@@ -46,6 +43,9 @@ export interface StageSettings {
      * Number of groups in a round-robin stage.
      */
     groupCount?: number,
+
+    /** The number of participants. */
+    size?: number,
 
     /** 
      * Optional final between semi-final losers.
@@ -152,7 +152,7 @@ export interface Stage {
     tournament_id: number,
     name: string,
     type: StageType,
-    settings?: StageSettings,
+    settings: StageSettings,
 
     /** The number of the stage in its tournament. */
     number: number,
