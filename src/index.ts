@@ -152,7 +152,7 @@ export interface Stage {
     tournament_id: number,
     name: string,
     type: StageType,
-    settings?: StageSettings,
+    settings: StageSettings,
 
     /** The number of the stage in its tournament. */
     number: number,
