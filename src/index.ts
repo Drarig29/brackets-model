@@ -1,9 +1,8 @@
 /**
  * Used to order seeds.
  */
-export type SeedOrdering =
-    'natural' | 'reverse' | 'half_shift' | 'reverse_half_shift' | 'pair_flip' | 'inner_outer' |
-    'groups.effort_balanced' | 'groups.snake' | 'groups.bracket_optimized';
+export type SeedOrdering = 'natural' | 'reverse' | 'half_shift' | 'reverse_half_shift' | 'pair_flip' | 'inner_outer' |
+    'groups.effort_balanced' | 'groups.seed_optimized' | 'groups.bracket_optimized';
 
 /**
  * An array of participants (name or `null` to introduce a BYE), given to the library to create a stage.
