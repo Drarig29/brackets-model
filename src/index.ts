@@ -44,8 +44,15 @@ export interface StageSettings {
      */
     groupCount?: number,
 
-    /** The number of participants. */
+    /** 
+     * The number of participants.
+     */
     size?: number,
+
+    /**
+     * Whether to skip the first round of the WB of a double elimination stage.
+     */
+    skipFirstRound?: number,
 
     /** 
      * Optional final between semi-final losers.
