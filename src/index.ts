@@ -51,7 +51,7 @@ export interface StageSettings {
     /**
      * Whether to skip the first round of the WB of a double elimination stage.
      */
-    skipFirstRound?: number,
+    skipFirstRound?: boolean,
 
     /** 
      * Optional final between semi-final losers.
