@@ -96,6 +96,13 @@ export interface StageSettings {
     seedOrdering?: SeedOrdering[],
 
     /**
+     * Whether to balance BYEs in the seeding of a stage.
+     * 
+     * This prevents having BYE against BYE in matches.
+     */
+    balanceByes?: boolean,
+
+    /**
      * All matches of the stage will have this child count. This can later be overridden for certain groups, rounds or matches.
      */
     matchesChildCount?: number,
