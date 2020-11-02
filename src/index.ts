@@ -35,6 +35,11 @@ export declare interface InputStage {
 export type GrandFinalType = 'none' | 'simple' | 'double';
 
 /**
+ * The possible modes for a round-robin stage.
+ */
+export type RoundRobinMode = 'simple' | 'double';
+
+/**
  * The possible settings for a stage.
  */
 export interface StageSettings {
@@ -42,6 +47,14 @@ export interface StageSettings {
      * Number of groups in a round-robin stage.
      */
     groupCount?: number,
+
+    /**
+     * The mode for the round-robin stage.
+     * 
+     * - If `simple`, each participant plays each opponent once.
+     * - If `double`, each participant plays each opponent twice, once at home and once away.
+     */
+    roundRobinMode?: RoundRobinMode,
 
     /** 
      * The number of participants.
