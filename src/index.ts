@@ -15,11 +15,25 @@ export type Seeding = (string | null)[];
 export type SeedingIds = (number | null)[];
 
 /**
+ * The only supported type of stage.
+ */
+export type StageType = 'round_robin' | 'single_elimination' | 'double_elimination';
+
+/**
  * Used to created a stage.
  */
 export declare interface InputStage {
+    /**
+     * ID of the parent tournament.
+     * 
+     * Used to determine the `number` of a stage for a tournament.
+     */
     tournamentId: number,
+
+    /** Name of the stage. */
     name: string,
+
+    /** Type of stage. */
     type: StageType,
 
     /** Contains participants (name or id) or `null` for BYEs. */
@@ -44,42 +58,9 @@ export type RoundRobinMode = 'simple' | 'double';
  */
 export interface StageSettings {
     /** 
-     * Number of groups in a round-robin stage.
-     */
-    groupCount?: number,
-
-    /**
-     * The mode for the round-robin stage.
-     * 
-     * - If `simple`, each participant plays each opponent once.
-     * - If `double`, each participant plays each opponent twice, once at home and once away.
-     */
-    roundRobinMode?: RoundRobinMode,
-
-    /** 
      * The number of participants.
      */
     size?: number,
-
-    /**
-     * Whether to skip the first round of the WB of a double elimination stage.
-     */
-    skipFirstRound?: boolean,
-
-    /** 
-     * Optional final between semi-final losers.
-     */
-    consolationFinal?: boolean,
-
-    /**
-     * Optional grand final between WB and LB winners.
-     * 
-     * - If `none`, there is no grand final.
-     * - If `simple`, the final is a single match. The winner is the winner of the stage.
-     * - If `double`, if the WB winner wins, he's the winner of the stage. But if he loses, the final is reset and there is a very last match.
-     * It might be fairer since it gives the WB winner the right to lose once during the stage...
-     */
-    grandFinal?: GrandFinalType,
 
     /**
      * A list of ordering methods to apply to the seeding.
@@ -106,12 +87,40 @@ export interface StageSettings {
      * All matches of the stage will have this child count. This can later be overridden for certain groups, rounds or matches.
      */
     matchesChildCount?: number,
-}
 
-/**
- * The only supported type of stage.
- */
-export type StageType = 'round_robin' | 'single_elimination' | 'double_elimination';
+    /** 
+     * Number of groups in a round-robin stage.
+     */
+    groupCount?: number,
+
+    /**
+     * The mode for the round-robin stage.
+     * 
+     * - If `simple`, each participant plays each opponent once.
+     * - If `double`, each participant plays each opponent twice, once at home and once away.
+     */
+    roundRobinMode?: RoundRobinMode,
+
+    /** 
+     * Optional final between semi-final losers.
+     */
+    consolationFinal?: boolean,
+
+    /**
+     * Whether to skip the first round of the WB of a double elimination stage.
+     */
+    skipFirstRound?: boolean,
+
+    /**
+     * Optional grand final between WB and LB winners.
+     * 
+     * - If `none`, there is no grand final.
+     * - If `simple`, the final is a single match. The winner is the winner of the stage.
+     * - If `double`, if the WB winner wins, he's the winner of the stage. But if he loses, the final is reset and there is a very last match.
+     * It might be fairer since it gives the WB winner the right to lose once during the stage...
+     */
+    grandFinal?: GrandFinalType,
+}
 
 /**
  * The possible results of a duel for a participant.
@@ -162,11 +171,16 @@ export interface ParticipantResult {
 }
 
 /**
- * A participant of a stage.
+ * A participant of a stage (team or individual).
  */
 export interface Participant {
+    /** ID of the participant. */
     id: number,
-    tournament_id: number
+
+    /** ID of the tournament this participant belongs to. */
+    tournament_id: number,
+
+    /** Name of the participant. */
     name: string,
 }
 
@@ -174,10 +188,19 @@ export interface Participant {
  * A stage, which can be a round-robin stage or a single/double elimination stage.
  */
 export interface Stage {
+    /** ID of the stage. */
     id: number,
+
+    /** ID of the tournament this stage belongs to. */
     tournament_id: number,
+
+    /** Name of the stage. */
     name: string,
+
+    /** Type of the stage. */
     type: StageType,
+
+    /** Settings of the stage. */
     settings: StageSettings,
 
     /** The number of the stage in its tournament. */
@@ -188,21 +211,29 @@ export interface Stage {
  * A group of a stage.
  */
 export interface Group {
+    /** ID of the group. */
     id: number,
+
+    /** ID of the parent stage. */
     stage_id: number,
 
     /** The number of the group in its stage. */
     number: number,
 }
 
-// The next levels don't have a `name` property. They can be named with their `number` and their context (parent levels).
+// The next levels don't have a `name` property. They are automatically named with their `number` and their context (parent levels).
 
 /**
  * A round of a group.
  */
 export interface Round {
+    /** ID of the round. */
     id: number,
+
+    /** ID of the parent stage. */
     stage_id: number,
+
+    /** ID of the parent group. */
     group_id: number,
 
     /** The number of the round in its group. */
@@ -213,8 +244,13 @@ export interface Round {
  * Only contains information about match status and results.
  */
 export interface MatchResults {
+    /** Status of the match. */
     status: Status,
+
+    /** First opponent of the match. */
     opponent1: ParticipantResult | null,
+
+    /** Second opponent of the match. */
     opponent2: ParticipantResult | null,
 }
 
@@ -222,9 +258,16 @@ export interface MatchResults {
  * A match of a round.
  */
 export interface Match extends MatchResults {
+    /** ID of the match. */
     id: number,
+
+    /** ID of the parent stage. */
     stage_id: number,
+
+    /** ID of the parent group. */
     group_id: number,
+
+    /** ID of the parent round. */
     round_id: number,
 
     /** The number of the match in its round. */
@@ -238,7 +281,10 @@ export interface Match extends MatchResults {
  * A game of a match.
  */
 export interface MatchGame extends MatchResults {
+    /** ID of the match game. */
     id: number,
+
+    /** ID of the parent match. */
     parent_id: number,
 
     /** The number of the match game in its parent match. */
