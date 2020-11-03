@@ -5,14 +5,11 @@ export type SeedOrdering = 'natural' | 'reverse' | 'half_shift' | 'reverse_half_
     'groups.effort_balanced' | 'groups.seed_optimized' | 'groups.bracket_optimized';
 
 /**
- * An array of participants (name or `null` to introduce a BYE), given to the library to create a stage.
+ * The seeding for a stage.
+ * 
+ * Each element represents a participant, and can be its name, its id or a BYE (`null`).
  */
-export type Seeding = (string | null)[];
-
-/**
- * An array of participants (id or `null` to introduce a BYE), given to the library to edit a stage.
- */
-export type SeedingIds = (number | null)[];
+export type Seeding = (string | number | null)[];
 
 /**
  * The only supported type of stage.
@@ -37,7 +34,7 @@ export declare interface InputStage {
     type: StageType,
 
     /** Contains participants (name or id) or `null` for BYEs. */
-    seeding?: Seeding | SeedingIds,
+    seeding?: Seeding,
 
     /** Contains optional settings special to each stage type. */
     settings?: StageSettings,
