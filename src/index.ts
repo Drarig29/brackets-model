@@ -6,7 +6,7 @@ export type SeedOrdering = 'natural' | 'reverse' | 'half_shift' | 'reverse_half_
 
 /**
  * The seeding for a stage.
- * 
+ *
  * Each element represents a participant, and can be its name, its id or a BYE (`null`).
  */
 export type Seeding = (string | number | null)[];
@@ -22,7 +22,7 @@ export type StageType = 'round_robin' | 'single_elimination' | 'double_eliminati
 export declare interface InputStage {
     /**
      * ID of the parent tournament.
-     * 
+     *
      * Used to determine the `number` of a stage for a tournament.
      */
     tournamentId: number,
@@ -54,14 +54,14 @@ export type RoundRobinMode = 'simple' | 'double';
  * The possible settings for a stage.
  */
 export interface StageSettings {
-    /** 
+    /**
      * The number of participants.
      */
     size?: number,
 
     /**
      * A list of ordering methods to apply to the seeding.
-     * 
+     *
      * - For a round-robin stage: 1 item required (**with** `"groups."` prefix).
      *   - Used to distribute in groups.
      * - For a simple elimination stage, 1 item required (**without** `"groups."` prefix).
@@ -75,7 +75,7 @@ export interface StageSettings {
 
     /**
      * Whether to balance BYEs in the seeding of a stage.
-     * 
+     *
      * This prevents having BYE against BYE in matches.
      */
     balanceByes?: boolean,
@@ -85,20 +85,20 @@ export interface StageSettings {
      */
     matchesChildCount?: number,
 
-    /** 
+    /**
      * Number of groups in a round-robin stage.
      */
     groupCount?: number,
 
     /**
      * The mode for the round-robin stage.
-     * 
+     *
      * - If `simple`, each participant plays each opponent once.
      * - If `double`, each participant plays each opponent twice, once at home and once away.
      */
     roundRobinMode?: RoundRobinMode,
 
-    /** 
+    /**
      * Optional final between semi-final losers.
      */
     consolationFinal?: boolean,
@@ -110,7 +110,7 @@ export interface StageSettings {
 
     /**
      * Optional grand final between WB and LB winners.
-     * 
+     *
      * - If `none`, there is no grand final.
      * - If `simple`, the final is a single match. The winner is the winner of the stage.
      * - If `double`, if the WB winner wins, he's the winner of the stage. But if he loses, the final is reset and there is a very last match.
@@ -241,6 +241,9 @@ export interface Round {
  * Only contains information about match status and results.
  */
 export interface MatchResults {
+    /** ID of the match. */
+    id: number,
+
     /** Status of the match. */
     status: Status,
 
@@ -255,9 +258,6 @@ export interface MatchResults {
  * A match of a round.
  */
 export interface Match extends MatchResults {
-    /** ID of the match. */
-    id: number,
-
     /** ID of the parent stage. */
     stage_id: number,
 
@@ -278,9 +278,6 @@ export interface Match extends MatchResults {
  * A game of a match.
  */
 export interface MatchGame extends MatchResults {
-    /** ID of the match game. */
-    id: number,
-
     /** ID of the parent match. */
     parent_id: number,
 
