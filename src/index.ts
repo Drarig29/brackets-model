@@ -12,18 +12,18 @@ export type SeedOrdering = 'natural' | 'reverse' | 'half_shift' | 'reverse_half_
 export type Seeding = (string | number | null)[];
 
 /**
- * The only supported type of stage.
+ * The only supported types of stage.
  */
 export type StageType = 'round_robin' | 'single_elimination' | 'double_elimination';
 
 /**
- * Used to created a stage.
+ * Used to create a stage.
  */
 export declare interface InputStage {
     /**
      * ID of the parent tournament.
      *
-     * Used to determine the `number` of a stage for a tournament.
+     * Used to determine the `number` property of a stage related to a tournament.
      */
     tournamentId: number,
 
@@ -36,7 +36,7 @@ export declare interface InputStage {
     /** Contains participants (name or id) or `null` for BYEs. */
     seeding?: Seeding,
 
-    /** Contains optional settings special to each stage type. */
+    /** Contains optional settings specific to each stage type. */
     settings?: StageSettings,
 }
 
@@ -129,22 +129,22 @@ export type Result = 'win' | 'draw' | 'loss';
  */
 export enum Status {
     /** The two matches leading to this one are not completed yet. */
-    Locked,
+    Locked = 0,
 
     /** One participant is ready and waiting for the other one. */
-    Waiting,
+    Waiting = 1,
 
     /** Both participants are ready to start. */
-    Ready,
+    Ready = 2,
 
     /** The match is running. */
-    Running,
+    Running = 3,
 
     /** The match is completed. */
-    Completed,
+    Completed = 4,
 
     /** At least one participant completed his following match. */
-    Archived,
+    Archived = 5,
 }
 
 /**
@@ -157,7 +157,7 @@ export interface ParticipantResult {
     /** Indicates where the participant comes from. */
     position?: number,
 
-    /** If this participant is forfeit, the other automatically wins. */
+    /** If this participant forfeits, the other automatically wins. */
     forfeit?: boolean,
 
     /** The current score of the participant. */
