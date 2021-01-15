@@ -74,7 +74,7 @@ export interface StageSettings {
     seedOrdering?: SeedOrdering[],
 
     /**
-     * Whether to balance BYEs in the seeding of a stage.
+     * Whether to balance BYEs in the seeding of an elimination stage.
      *
      * This prevents having BYE against BYE in matches.
      */
