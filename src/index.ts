@@ -99,6 +99,13 @@ export interface StageSettings {
     roundRobinMode?: RoundRobinMode,
 
     /**
+     * A list of seeds per group for a round-robin stage to be manually ordered.
+     *
+     * Seed ordering is ignored if this property is given.
+     */
+    manualOrdering?: number[][],
+
+    /**
      * Optional final between semi-final losers.
      */
     consolationFinal?: boolean,
