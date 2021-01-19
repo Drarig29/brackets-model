@@ -19,7 +19,7 @@ export type StageType = 'round_robin' | 'single_elimination' | 'double_eliminati
 /**
  * Used to create a stage.
  */
-export declare interface InputStage {
+export interface InputStage {
     /**
      * ID of the parent tournament.
      *
