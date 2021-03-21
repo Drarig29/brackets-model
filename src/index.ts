@@ -248,12 +248,6 @@ export interface Round {
  * Only contains information about match status and results.
  */
 export interface MatchResults {
-    /** ID of the match. */
-    id: number,
-
-    /** ID of the parent stage. */
-    stage_id: number,
-
     /** Status of the match. */
     status: Status,
 
@@ -268,6 +262,12 @@ export interface MatchResults {
  * A match of a round.
  */
 export interface Match extends MatchResults {
+    /** ID of the match. */
+    id: number,
+
+    /** ID of the parent stage. */
+    stage_id: number,
+
     /** ID of the parent group. */
     group_id: number,
 
@@ -285,6 +285,12 @@ export interface Match extends MatchResults {
  * A game of a match.
  */
 export interface MatchGame extends MatchResults {
+    /** ID of the match game. */
+    id: number,
+
+    /** ID of the parent stage. */
+    stage_id: number,
+
     /** ID of the parent match. */
     parent_id: number,
 
