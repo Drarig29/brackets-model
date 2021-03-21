@@ -251,6 +251,9 @@ export interface MatchResults {
     /** ID of the match. */
     id: number,
 
+    /** ID of the parent stage. */
+    stage_id: number,
+
     /** Status of the match. */
     status: Status,
 
@@ -265,9 +268,6 @@ export interface MatchResults {
  * A match of a round.
  */
 export interface Match extends MatchResults {
-    /** ID of the parent stage. */
-    stage_id: number,
-
     /** ID of the parent group. */
     group_id: number,
 
