@@ -33,6 +33,9 @@ export interface InputStage {
     /** Type of stage. */
     type: StageType,
 
+    /** The number of the stage in its tournament. Is determined if not given. */
+    number?: number,
+
     /** Contains participants (name or id) or `null` for BYEs. */
     seeding?: Seeding,
 
