@@ -2,9 +2,9 @@
  * Contains the types which are persisted in the chosen storage.
  *----------------------------------------------------------------*/
 
-import { StageSettings } from "./input";
-import { MatchResults } from "./other";
-import { StageType } from "./unions";
+import { StageSettings } from './input';
+import { MatchResults } from './other';
+import { StageType } from './unions';
 
 /**
  * A participant of a stage (team or individual).

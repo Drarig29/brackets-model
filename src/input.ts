@@ -2,7 +2,7 @@
  * Contains everything which is given by the user as input.
  *-----------------------------------------------------------*/
 
-import { GrandFinalType, RoundRobinMode, SeedOrdering, StageType } from "./unions";
+import { GrandFinalType, RoundRobinMode, SeedOrdering, StageType } from './unions';
 
 /**
  * The seeding for a stage.

@@ -8,4 +8,4 @@ export {
     InputStage, Seeding, StageSettings,
     Participant, Stage, Group, Round, Match, MatchGame,
     MatchResults, ParticipantResult, Status,
-}
+};

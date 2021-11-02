@@ -2,7 +2,7 @@
  * Contains the rest of the types which doesn't belong to the other files.
  *--------------------------------------------------------------------------*/
 
-import { Result } from "./unions";
+import { Result } from './unions';
 
 /**
  * The possible status for a match.
