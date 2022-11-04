@@ -1,10 +1,10 @@
 # brackets-model
 
-The types needed by [brackets-manager.js](https://github.com/Drarig29/brackets-manager.js) and [brackets-viewer.js](https://github.com/Drarig29/brackets-viewer.js)
-
-If you think any type or property should not be here, it's likely you think about only one of the two libraries... 😉
-
 [![npm](https://img.shields.io/npm/v/brackets-model.svg)](https://www.npmjs.com/package/brackets-model)
+
+This package contains everything needed to handle tournaments, matches, etc. in an opionated way.
+
+Used by [brackets-manager.js](https://github.com/Drarig29/brackets-manager.js) and [brackets-viewer.js](https://github.com/Drarig29/brackets-viewer.js)
 
 ## Disclaimer
 
