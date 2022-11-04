@@ -17,6 +17,7 @@
     ],
     "scripts": {
         "build": "tsc",
+        "test": "echo 'No tests for this project'",
         "prepare": "npm run build",
         "prepublishOnly": "npm run build",
         "lint": "eslint '**/*.{js,ts}' --fix"
