@@ -8,6 +8,15 @@
 export type StageType = 'round_robin' | 'single_elimination' | 'double_elimination';
 
 /**
+ * All the possible types of group in an elimination stage.
+ * 
+ * - `single_bracket` for single elimination.
+ * - `winner_bracket` and `loser_bracket` for double elimination.
+ * - `final_group` for both single and double elimination.
+ */
+export type GroupType = 'single_bracket' | 'winner_bracket' | 'loser_bracket' | 'final_group';
+
+/**
  * The possible types for a double elimination stage's grand final.
  */
 export type GrandFinalType = 'none' | 'simple' | 'double';
