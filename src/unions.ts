@@ -22,6 +22,11 @@ export type GroupType = 'single_bracket' | 'winner_bracket' | 'loser_bracket' | 
 export type GrandFinalType = 'none' | 'simple' | 'double';
 
 /**
+ * The possible types of final for an elimination stage.
+ */
+export type FinalType = 'consolation_final' | 'grand_final';
+
+/**
  * The possible modes for a round-robin stage.
  */
 export type RoundRobinMode = 'simple' | 'double';
