@@ -1,6 +1,6 @@
 {
     "name": "brackets-model",
-    "version": "1.4.0",
+    "version": "1.5.0",
     "description": "The types needed by brackets-manager.js and brackets-viewer.js",
     "main": "./dist/index.js",
     "types": "./dist/index.d.ts",
