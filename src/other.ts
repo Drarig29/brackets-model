@@ -2,7 +2,7 @@
  * Contains the rest of the types which doesn't belong to the other files.
  *--------------------------------------------------------------------------*/
 
-import { Result } from './unions';
+import { Id, Result } from './unions';
 
 /**
  * The possible status for a match.
@@ -32,7 +32,7 @@ export enum Status {
  */
 export interface ParticipantResult {
     /** If `null`, the participant is to be determined. */
-    id: number | null,
+    id: Id | null,
 
     /** Indicates where the participant comes from. */
     position?: number,

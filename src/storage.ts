@@ -4,17 +4,17 @@
 
 import { StageSettings } from './input';
 import { MatchResults } from './other';
-import { StageType } from './unions';
+import { Id, StageType } from './unions';
 
 /**
  * A participant of a stage (team or individual).
  */
 export interface Participant {
     /** ID of the participant. */
-    id: number,
+    id: Id,
 
     /** ID of the tournament this participant belongs to. */
-    tournament_id: number,
+    tournament_id: Id,
 
     /** Name of the participant. */
     name: string,
@@ -25,10 +25,10 @@ export interface Participant {
  */
 export interface Stage {
     /** ID of the stage. */
-    id: number,
+    id: Id,
 
     /** ID of the tournament this stage belongs to. */
-    tournament_id: number,
+    tournament_id: Id,
 
     /** Name of the stage. */
     name: string,
@@ -48,10 +48,10 @@ export interface Stage {
  */
 export interface Group {
     /** ID of the group. */
-    id: number,
+    id: Id,
 
     /** ID of the parent stage. */
-    stage_id: number,
+    stage_id: Id,
 
     /** The number of the group in its stage. */
     number: number,
@@ -64,13 +64,13 @@ export interface Group {
  */
 export interface Round {
     /** ID of the round. */
-    id: number,
+    id: Id,
 
     /** ID of the parent stage. */
-    stage_id: number,
+    stage_id: Id,
 
     /** ID of the parent group. */
-    group_id: number,
+    group_id: Id,
 
     /** The number of the round in its group. */
     number: number,
@@ -81,16 +81,16 @@ export interface Round {
  */
 export interface Match extends MatchResults {
     /** ID of the match. */
-    id: number,
+    id: Id,
 
     /** ID of the parent stage. */
-    stage_id: number,
+    stage_id: Id,
 
     /** ID of the parent group. */
-    group_id: number,
+    group_id: Id,
 
     /** ID of the parent round. */
-    round_id: number,
+    round_id: Id,
 
     /** The number of the match in its round. */
     number: number,
@@ -104,13 +104,13 @@ export interface Match extends MatchResults {
  */
 export interface MatchGame extends MatchResults {
     /** ID of the match game. */
-    id: number,
+    id: Id,
 
     /** ID of the parent stage. */
-    stage_id: number,
+    stage_id: Id,
 
     /** ID of the parent match. */
-    parent_id: number,
+    parent_id: Id,
 
     /** The number of the match game in its parent match. */
     number: number,

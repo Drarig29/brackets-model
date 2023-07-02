@@ -3,7 +3,7 @@
  *-----------------------------------------------------------*/
 
 import { Participant } from './storage';
-import { GrandFinalType, RoundRobinMode, SeedOrdering, StageType } from './unions';
+import { GrandFinalType, Id, RoundRobinMode, SeedOrdering, StageType } from './unions';
 
 /**
  * A participant as it would be persisted in the storage, but with extra fields.
@@ -15,11 +15,16 @@ export type CustomParticipant<ExtraFields = Record<string, unknown>> = Participa
  *
  * Each element represents a participant, which can be:
  * - A full object, with possibly extra fields.
- * - Its name.
- * - Its ID.
+ * - Its name (string).
+ * - Its ID (only integers are supported, for backwards compatibility).
  * - Or a BYE: `null`.
  */
 export type Seeding = (CustomParticipant | string | number | null)[];
+
+/**
+ * The seeding for a stage (only containing IDs or BYEs).
+ */
+export type IdSeeding = (Id | null)[];
 
 /**
  * Used to create a stage.
@@ -30,7 +35,7 @@ export interface InputStage {
      *
      * Used to determine the `number` property of a stage related to a tournament.
      */
-    tournamentId: number,
+    tournamentId: Id,
 
     /** Name of the stage. */
     name: string,
@@ -43,6 +48,7 @@ export interface InputStage {
 
     /** Contains participants or `null` for BYEs. */
     seeding?: Seeding,
+    seedingIds?: IdSeeding,
 
     /** Contains optional settings specific to each stage type. */
     settings?: StageSettings,
