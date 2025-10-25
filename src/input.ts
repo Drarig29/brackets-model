@@ -6,15 +6,15 @@ import { Participant } from './storage';
 import { GrandFinalType, Id, RoundRobinMode, SeedOrdering, StageType } from './unions';
 
 /**
- * A participant as it would be persisted in the storage, but with extra fields.
+ * An item of the seeding with a `name` and extra fields.
  */
-export type CustomParticipant<ExtraFields = Record<string, unknown>> = Participant & ExtraFields;
+export type CustomParticipant<ExtraFields = Record<string, unknown>> = Pick<Participant, 'name'> & ExtraFields;
 
 /**
  * The seeding for a stage.
  *
  * Each element represents a participant, which can be:
- * - A full object, with possibly extra fields.
+ * - An object with a `name` and extra fields.
  * - Its name (string).
  * - Its ID (only integers are supported, for backwards compatibility).
  * - Or a BYE: `null`.
