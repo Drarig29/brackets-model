@@ -60,3 +60,36 @@ export interface MatchResults {
     /** Second opponent of the match. */
     opponent2: ParticipantResult | null,
 }
+
+/**
+ * An item of the ranking.
+ */
+export interface RankingItem {
+    /** ID of the participant. */
+    id: Id,
+    /** Number of matches played by the participant. */
+    played: number,
+    /** Number of matches won by the participant. */
+    wins: number,
+    /** Number of matches that ended in a draw. */
+    draws: number,
+    /** Number of matches lost by the participant. */
+    losses: number,
+    /** Number of matches forfeited by the participant. */
+    forfeits: number,
+    /** Total score in favor of the participant. */
+    scoreFor: number,
+    /** Total score in favor of the opponents. */
+    scoreAgainst: number,
+    /** Difference between {@link scoreFor} and {@link scoreAgainst}. */
+    scoreDifference: number,
+    /** Total points of the participant. */
+    points: number,
+    /** Resulting rank of the participant. */
+    rank: number,
+}
+
+/**
+ * A formula to compute the points in a ranking.
+ */
+export type RankingFormula = (ranking: RankingItem) => number;
