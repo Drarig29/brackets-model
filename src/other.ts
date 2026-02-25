@@ -62,7 +62,7 @@ export interface MatchResults {
 }
 
 /**
- * An item of the ranking.
+ * An item of a round-robin ranking. Used to compute the final standings of a round-robin stage in the manager, and to display ranking tables in the viewer.
  */
 export interface RankingItem {
     /** ID of the participant. */
