@@ -59,7 +59,7 @@ export interface InputStage {
  */
 export interface StageSettings {
     /**
-     * The number of participants.
+     * The number of participants in the stage.
      */
     size?: number,
 
