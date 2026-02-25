@@ -59,7 +59,7 @@ export interface InputStage {
  */
 export interface StageSettings {
     /**
-     * The number of participants.
+     * The number of participants in the stage.
      */
     size?: number,
 
@@ -103,7 +103,10 @@ export interface StageSettings {
     roundRobinMode?: RoundRobinMode,
 
     /**
-     * A list of seeds per group for a round-robin stage to be manually ordered.
+     * A list of seeds to manually order the stage.
+     *
+     * - For a round-robin stage: a list of seeds per group.
+     * - For an elimination stage: a single list of seeds for the bracket.
      *
      * Seed ordering is ignored if this property is given.
      */
