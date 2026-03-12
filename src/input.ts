@@ -27,6 +27,11 @@ export type Seeding = (CustomParticipant | string | number | null)[];
 export type IdSeeding = (Id | null)[];
 
 /**
+ * A seed position in a manual ordering. A BYE is represented by `null`.
+ */
+export type Seed = number | null;
+
+/**
  * Used to create a stage.
  */
 export interface InputStage {
@@ -110,7 +115,7 @@ export interface StageSettings {
      *
      * Seed ordering is ignored if this property is given.
      */
-    manualOrdering?: number[][],
+    manualOrdering?: Seed[][],
 
     /**
      * Optional final between semi-final losers.
