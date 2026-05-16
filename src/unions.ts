@@ -45,4 +45,4 @@ export type Result = 'win' | 'draw' | 'loss';
 /**
  * Depending on your storage system, you might prefer strings or numbers.
  */
-export type Id = string | number
+export type Id = string | number;
