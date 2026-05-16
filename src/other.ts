@@ -25,6 +25,13 @@ export enum Status {
 
     /** At least one participant completed his following match. */
     Archived = 5,
+
+    /**
+     * The match game was cancelled with `update.cancelMatchGame()`.
+     * 
+     * Can also be used for games that were not needed (e.g. Bo3 with a score of 2-0), but this is not handled by the library.
+     */
+    GameCancelled = 6,
 }
 
 /**
