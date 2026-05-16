@@ -132,8 +132,8 @@ export interface StageSettings {
      *
      * - If `none`, there is no grand final.
      * - If `simple`, the final is a single match. The winner is the winner of the stage.
-     * - If `double`, if the WB winner wins, he's the winner of the stage. But if he loses, the final is reset and there is a very last match.
-     * It might be fairer since it gives the WB winner the right to lose once during the stage...
+     * - If `double`, if the WB winner wins, it's the winner of the stage. But if it loses, the final is reset and there is a very last match, known as the reset match.
+     *   It gives the WB winner the right to lose once during the stage. This is commonly known as "resetting the bracket".
      */
     grandFinal?: GrandFinalType,
 }
